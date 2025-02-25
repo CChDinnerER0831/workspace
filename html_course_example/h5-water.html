@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<HTML><HEAD><TITLE>飲用水管理</TITLE>
+<META charset="utf-8">
+<SCRIPT language=JavaScript>
+
+<!--
+
+function MM_timelinePlay(tmLnName, myID) { //v1.2
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,propNum,theObj,firstTime=false;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (myID == null) { myID = ++tmLn.ID; firstTime=true;}//if new call, incr ID
+
+  if (myID == tmLn.ID) { //if Im newest
+
+    setTimeout('MM_timelinePlay("'+tmLnName+'",'+myID+')',tmLn.delay);
+
+    fNew = ++tmLn.curFrame;
+
+    for (i=0; i<tmLn.length; i++) {
+
+      sprite = tmLn[i];
+
+      if (sprite.charAt(0) == 's') {
+
+        if (sprite.obj) {
+
+          numKeyFr = sprite.keyFrames.length; firstKeyFr = sprite.keyFrames[0];
+
+          if (fNew >= firstKeyFr && fNew <= sprite.keyFrames[numKeyFr-1]) {//in range
+
+            keyFrm=1;
+
+            for (j=0; j<sprite.values.length; j++) {
+
+              props = sprite.values[j]; 
+
+              if (numKeyFr != props.length) {
+
+                if (props.prop2 == null) sprite.obj[props.prop] = props[fNew-firstKeyFr];
+
+                else        sprite.obj[props.prop2][props.prop] = props[fNew-firstKeyFr];
+
+              } else {
+
+                while (keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]) keyFrm++;
+
+                if (firstTime || fNew==sprite.keyFrames[keyFrm-1]) {
+
+                  if (props.prop2 == null) sprite.obj[props.prop] = props[keyFrm-1];
+
+                  else        sprite.obj[props.prop2][props.prop] = props[keyFrm-1];
+
+        } } } } }
+
+      } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+      if (fNew > tmLn.lastFrame) tmLn.ID = 0;
+
+  } }
+
+}
+
+
+
+function MM_timelineGoto(tmLnName, fNew, numGotos) { //v2.0
+
+  //Copyright 1997 Macromedia, Inc. All rights reserved.
+
+  var i,j,tmLn,props,keyFrm,sprite,numKeyFr,firstKeyFr,lastKeyFr,propNum,theObj;
+
+  if (document.MM_Time == null) MM_initTimelines(); //if *very* 1st time
+
+  tmLn = document.MM_Time[tmLnName];
+
+  if (numGotos != null)
+
+    if (tmLn.gotoCount == null) tmLn.gotoCount = 1;
+
+    else if (tmLn.gotoCount++ >= numGotos) {tmLn.gotoCount=0; return}
+
+  jmpFwd = (fNew > tmLn.curFrame);
+
+  for (i = 0; i < tmLn.length; i++) {
+
+    sprite = (jmpFwd)? tmLn[i] : tmLn[(tmLn.length-1)-i]; //count bkwds if jumping back
+
+    if (sprite.charAt(0) == "s") {
+
+      numKeyFr = sprite.keyFrames.length;
+
+      firstKeyFr = sprite.keyFrames[0];
+
+      lastKeyFr = sprite.keyFrames[numKeyFr - 1];
+
+      if ((jmpFwd && fNew<firstKeyFr) || (!jmpFwd && lastKeyFr<fNew)) continue; //skip if untouchd
+
+      for (keyFrm=1; keyFrm<numKeyFr && fNew>=sprite.keyFrames[keyFrm]; keyFrm++);
+
+      for (j=0; j<sprite.values.length; j++) {
+
+        props = sprite.values[j];
+
+        if (numKeyFr == props.length) propNum = keyFrm-1 //keyframes only
+
+        else propNum = Math.min(Math.max(0,fNew-firstKeyFr),props.length-1); //or keep in legal range
+
+        if (sprite.obj != null) {
+
+          if (props.prop2 == null) sprite.obj[props.prop] = props[propNum];
+
+          else        sprite.obj[props.prop2][props.prop] = props[propNum];
+
+      } }
+
+    } else if (sprite.charAt(0)=='b' && fNew == sprite.frame) eval(sprite.value);
+
+  }
+
+  tmLn.curFrame = fNew;
+
+  if (tmLn.ID == 0) eval('MM_timelinePlay(tmLnName)');
+
+}
+
+
+
+function MM_initTimelines() {
+
+    //MM_initTimelines() Copyright 1997 Macromedia, Inc. All rights reserved.
+
+    var ns = navigator.appName == "Netscape";
+
+    document.MM_Time = new Array(1);
+
+    document.MM_Time[0] = new Array(1);
+
+    document.MM_Time["Timeline1"] = document.MM_Time[0];
+
+    document.MM_Time[0].MM_Name = "Timeline1";
+
+    document.MM_Time[0].fps = 15;
+
+    document.MM_Time[0][0] = new String("behavior");
+
+    document.MM_Time[0][0].frame = 30;
+
+    document.MM_Time[0][0].value = "MM_timelineGoto('Timeline1','1')";
+
+    document.MM_Time[0].lastFrame = 30;
+
+    for (i=0; i<document.MM_Time.length; i++) {
+
+        document.MM_Time[i].ID = null;
+
+        document.MM_Time[i].curFrame = 0;
+
+        document.MM_Time[i].delay = 1000/document.MM_Time[i].fps;
+
+    }
+
+}
+
+//-->
+
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.2769" name=GENERATOR></HEAD>
+<BODY text=#0066cc vLink=#0066cc aLink=#cc0066 link=#0066cc bgColor=#ffffff 
+onload="MM_timelinePlay('Timeline1')">
+<DIV align=center></DIV>
+<TABLE height=300 cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top align=middle>
+    <TD height=4437><A name=05></A><BR>
+      <TABLE cellSpacing=0 cellPadding=0 width="80%" border=0>
+        <TBODY>
+        <TR vAlign=top align=left>
+          <TD colSpan=2><B><FONT face="細明體, 標楷體" color=#ff3333 
+            size=4>參、選購淨水器的方法</FONT></B></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3>一、電解水機療效廣告真相</FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3>二、<A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#02">認識磁能活化水真相</A></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3>三、<A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#03">淨水器的種類及設置時機</A></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3>四、<A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#04">各種淨水器可去除之污染物及其購置、維護條件</A></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=32><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=32><FONT face="細明體, 標楷體" color=#003399 
+            size=3><BR></FONT>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD>
+                  <DIV align=right><FONT 
+                  color=#ff6600>（轉載自行政院環保署出版品～認識淨水器專刊）</FONT> 
+              </DIV></TD></TR></TBODY></TABLE></TD></TR>
+        <TR vAlign=top align=left>
+          <TD colSpan=2><FONT face="細明體, 標楷體" color=#003399 size=3><BR><IMG 
+            height=8 alt=圖 src="water-line.gif" 
+            width=528></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3><A name=01></A></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><B><FONT face="細明體, 標楷體" color=#cc0033 
+            size=3>一、</FONT></B></TD>
+          <TD width="95%"><B><FONT face="細明體, 標楷體" color=#cc0033 
+            size=3>電解水機療效廣告真相</FONT></B></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><A href="http://www.klepb.gov.tw/18"><FONT 
+            face="細明體, 標楷體" color=#003399 size=3></FONT></A></TD>
+          <TD width="95%" height=25><A href="http://www.klepb.gov.tw/18"><FONT 
+            face="細明體, 標楷體" color=#003399 size=3></FONT></A></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <DIV align=right><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3>作者：立法院　郝龍斌委員</FONT></DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　『多喝電解水，治病又防老』、『治療慢性病，神奇飲水保健法』、『活化細胞排毒快~電解還原水』，上述這些電解水機的廣告詞，相信大家應該都不陌生，也有許多人相信了『喝水治病』的神奇功效，而不惜花費昂貴金錢去購買。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　據估計國內目前大約已有二、三十萬戶家庭使用電解水機，為什麼電解水機能夠如此大賣呢？其中最重要的因素，在於國內業者都以電解水具有療效以及特殊的功效為訴求；廣告往往強調長期飲用電解水，可以治療高血壓、心臟病、糖尿病及痛風等各種慢性病；想想看，喝水就能治病，多麼吸引人？經過業者誇大的宣傳，加上民眾對電解水的一知半解，於是國內掀起一陣電解水熱，實不足為奇。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　許多人以為電解水是一種高科技的飲用水，到底電解水是什麼呢？它是否真的具有神奇功效呢？其實，<FONT 
+            color=#ff3333>所謂電解水，就是在水電解時，</FONT>使用隔膜或鹽橋，刻意阻止離子進行交換，<FONT 
+            color=#ff3333>使水的酸鹼值改變，</FONT>同時也造成氧化還原電位變化、解離常數變化，<FONT 
+            color=#ff3333>如此便產生了所謂酸性水或鹼性水。</FONT>說穿了，電解水的製作，在基礎的理化實驗中就可以辦得到；而電解水可以治療慢性病的說法，當然是言過其實。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　至於業者宣稱電解水能清除對人體有害的自由基，其真實性又如何呢？一般而言，真正要阻止自由基傷害正常細胞，其實靠的是體內抗氧化酵素，以及維他命在細胞間發揮作用。雖然曾有實驗發現，將電解水注入試管內的血液裡，自由基的確有減少現象；不過試管實驗的結果，是否能夠同樣發揮到人體內，目前仍沒有科學上的證據。若說藉由喝電解水，就足以清除體內新陳代謝過程所產生的自由基，更是必須商榷。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　過去，衛生署曾經召開『醫療器材評估小組』，評估電解水機是否為醫療器材，事後衛生署明確指出，電解水機不屬於醫療器材，也不得標示及廣告其具有療效。事實上，<FONT 
+            color=#ff3333>衛生署曾多次依法查處廣告宣稱具有療效的業者，包括『金字塔宇宙飲水機』、『AKAI電解水生成器』、『電子磁化活水機』、『磁寶磁化水生成器』、『電解離子水生成器』、『電解水生成器』、『TOYO電解離子水生成器』、『長壽村電解水生成器』</FONT>等八家廠商，但市面上仍充斥著誇大不實的電解水機廣告，究其原因，是目前政府對淨水器尚未有一套完善的管理辦法，以致業者得以對產品功能胡亂吹噓，而消費者也不知道如何辨明產品的優劣，及廣告的真偽。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　為此筆者還特別與消基會共同舉辦『電解水等淨水器之管理問題』公聽會，希望能釐清淨水器功能和管理問題，而會中許多與會的學者與政府代表均認為，電解水機所稱之療效，至今尚未有臨床科學證實，往後消費者在面臨業者吹噓電解水機功效時，還是應該抱持謹慎的態度。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 size=3>　　然而，除了<FONT 
+            color=#ff3333>電解水機療效尚未被證實外，消費者使用電解水機也要非常小心，尤其不能使用地下水、山泉水、礦泉水、或受污染的自來水作為原水，</FONT>因為如果原水受鎘、鉛、銅等重金屬污染，經電解後，消費者如同直接飲用此『重金屬濃縮液』，反而會未蒙其利，先受其害。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 size=3>　　所以<FONT 
+            color=#ff3333>加裝淨水器或許有其必要，但如果為了所謂療效，而花費金錢，去購買電解水機，則大可不必了。</FONT> 
+            </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=28>　</TD>
+          <TD width="95%" height=28>
+            <DIV align=right><FONT face="細明體, 標楷體" color=#003399 size=3><A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#05"><IMG 
+            height=36 alt=圖 src="top.gif" 
+            width=74 border=0></A></FONT> 
+            <HR>
+            </DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><A name=02></A></TD>
+          <TD width="95%" height=18>&nbsp;</TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><B><FONT face="細明體, 標楷體" color=#cc0033 
+            size=3>二、</FONT></B></TD>
+          <TD width="95%"><B><FONT face="細明體, 標楷體" color=#cc0033 
+            size=3>認識磁能活化水真相</FONT></B></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <DIV align=right><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3>作者：台灣大學公共衛生學系　王根樹教授</FONT></DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT color=#003399></FONT></TD>
+          <TD width="95%">
+            <P><FONT 
+            color=#003399>　　市面上各式淨水器充斥，為達宣傳效果以促使民眾購買，各淨水器廠商無不運用各種方式宣傳淨水器之功效。目前市面上有許多淨水器陳列出售，但其所宣稱之功效卻仍缺乏相關之學理驗證與水質測試工作。在淨水器製造商之宣傳下，有可能誤導民眾之購買行為。在各類家用淨水設備中，磁化水淨水器是頗值得討論的一項。</FONT></P>
+            <P><FONT 
+            color=#003399>　　販售磁化水淨水器之廠商一般均會提供消費者一本至數本書籍來介紹磁化水之功能，這類書籍主要翻譯自日本之書籍或文章。此類書籍對磁化水之功能有許多極為神奇之敘述，包括種植農作物、養魚（將海水魚和淡水魚同缸飼養）、食物保鮮（數月不腐敗）、癌症完全治癒等。基本上這些說法都言之鑿鑿，但缺乏具體之實證；事實上沒有科學性的證據能被用來解釋磁化水的特性，而所有的療效（包括癌症的治療在內）也都未能獲得包括日本醫學組織在內的醫療學術組織認可。在國內，已有數個磁化水淨水器廠商因為涉嫌刊登誇大不實、涉及療效的商業廣告而被衛生主管單位處分在案（請參閱衛生署網站之相關資料）。</FONT></P>
+            <P><FONT color=#003399>　　 
+            到底什麼是磁化水？磁化水是否具備如廣告所言之功能？我們可以藉由磁化水淨水器廣告中的處理單元來探討磁化水的本質，並討論其改善水質之能力。一般而言，市面上可以買到的磁化水淨水設備主要包含下列處理單元： 
+            </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT color=#003399></FONT></TD>
+          <TD width="95%" height=20><FONT color=#003399></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT color=#003399></FONT></TD>
+          <TD width="95%"><FONT color=#003399><B><FONT 
+            color=#0000ff>（一）前置濾心</FONT></B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT color=#003399></FONT></TD>
+          <TD width="95%" height=18><FONT color=#003399></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT color=#003399></FONT></TD>
+          <TD width="95%"><FONT 
+            color=#ff3333>　　前置濾心的主要功能在去除水中顆粒性物質，一般市售淨水器均有此項設備。</FONT><FONT 
+            color=#003399>市售磁化水淨水器多採用5 
+            微米之過濾膜作為第一道濾心，部分加裝第二道孔隙較小之濾心（1微米或0.1微米），以將水中較細之雜質去除。過濾是自來水處理的主要程序，所有的自來水都經過極嚴密的過濾處理。同樣的，幾乎所有市面上買的到的淨水器都有過濾單元以去除水中顆粒狀物質。</FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT color=#003399></FONT></TD>
+          <TD width="95%" height=20><FONT color=#003399></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT color=#003399></FONT></TD>
+          <TD width="95%"><FONT color=#ff6600><B><FONT 
+            color=#0000ff>（二）活性碳吸附濾心</FONT></B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT color=#003399></FONT></TD>
+          <TD width="95%" height=18><FONT color=#003399></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT color=#003399></FONT></TD>
+          <TD width="95%">
+            <P><FONT color=#003399>　　<FONT 
+            color=#ff3333>活性碳吸附的主要功能在去除水中存在的微量毒性物質（例如農藥）。</FONT>一般粒狀活性碳吸附能有效的去除水中微量的農藥，<FONT 
+            color=#ff3333>同時對部分重金屬的去除也有效果，</FONT>但活性碳吸附無法去除微生物，也就是說活性碳吸附並沒有殺菌的功能。並且粒狀活性碳的存在提供了微生物生長的良好環境，如果維護清理不當極易造成致病微生物數量大幅增加的問題。部分淨水器廠商標榜其使用之含銀活性碳具有滅菌功能，讀者必須瞭解即使使用含銀之活性碳，也只能抑制微生物生長，並沒有殺菌的能力。</FONT></P>
+            <P><FONT color=#003399>　　如同前置濾心一般，<FONT 
+            color=#ff3333>活性碳吸附濾心也是一般市售淨水器的基本配備，</FONT>絕大多數的市售淨水器都同時包含了前置濾心及活性碳吸附濾心兩項配備，用以去除水中之顆粒狀物質及微量農藥。</FONT></P>
+            <P><FONT 
+            color=#003399>　　此外，一般市售磁化水淨水器所使用之濾材尚包括麥飯石（去除水中鈣離子或添加礦物質）、陽離子交換樹脂（去除水中鈣離子）、高密度PVA、磁礦石、陶瓷濾心、甚或RO逆滲透等等。使用之前處理單元或有不同，但未脫離一般市售淨水器所使用濾心之範疇。 
+            </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%"><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3><B>（三）磁化單元</B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　磁化單元是磁化水淨水器與一般淨水器差異最大的地方，也是最值得消費者注意的地方。一般市售磁化水淨水器所使用之磁化裝置各有不同，其標榜之磁化（或稱活化）包括下列數種：（1）使用所謂經太空科學生化科技研製成之永久礦物能量再生原素，來礦化、磁化、活化飲用水；（2）使用天然能量礦石陶瓷丸將水能量化，活化水質；（3）利用線圈產生動態磁場，將水磁化的電子磁化水生成器。此外尚有其他磁化設備，但一般並未脫離前述人造磁石、天然磁石或電磁場之運用，以「磁化」或「活化」水質為主要述求，並藉此標榜磁化水的特殊功效。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 size=3>　　基本上，<FONT 
+            color=#ff3333>「磁化」對水體水質之影響缺乏學理上之依據。</FONT>地球本身就是一個大磁場，因此我們可以說地球上現有的水都已經過磁化。即使在一般磁化水廠商所提供之宣傳書籍中，也明白承認磁化水之功能無法以科學方法加以證明，同時其所標榜之療效也無法獲得日本醫學組織認可。為探討磁化過程對處理後水質之影響，環保署曾委託學術機構對磁化水之特性進行探討。<FONT 
+            color=#ff3333>該研究使用未加裝任何前處理設備之電子磁化水生成器，對一般自來水、人工合成污染水、實驗室純水進行磁化實驗，就經「磁化」前後之水質進行分析，結果顯示磁化水無論在微生物（包括大腸菌及生菌）、重金屬（包括砷及鉛）、陰離子成分（氯鹽、硝酸鹽、硫酸鹽）以及硬度（鈣離子）等水質參數上均無任何變化。</FONT>使用磁化水及自來水所保存打破之生雞蛋亦顯示兩者在保存生雞蛋之能力上並無任何明顯差異，兩個杯子中之雞蛋均很快腐敗，磁化水並不能有效增加雞蛋之保存時間。整個實驗結果顯示，磁化過程對水質並無任何影響！！磁化水淨水器在水質上之改善主要來自過濾、活性碳吸附、離子交換等前處理流程。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　磁化水廠商常標明經過磁化的水其分子團較小（一般說法為六個水分子所組成之分子團），遠小於正常水體之水分子團（由二十餘個水分子組成），所以適合人體吸收，並且均提出以核磁共振法（NMR）測出之圖譜證明其說法。事實上，以NMR測量水分子團大小之說法亦缺乏學理上之依據。但由六個水分子所組成之分子團較適合人體吸收之說法卻廣泛的被磁化水、電解水、自然回歸水、π水等業者用來說明其功效。 
+            </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=52><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=52>
+            <DIV align=right><FONT face="細明體, 標楷體" color=#003399 size=3><A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#05"><IMG 
+            height=36 alt=圖 src="top.gif" 
+            width=74 border=0></A></FONT> 
+            <HR>
+            </DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><A name=03></A></TD>
+          <TD width="95%" height=18>&nbsp;</TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT color=#cc0033><B><FONT face="細明體, 標楷體" 
+            size=3>三、</FONT></B></FONT></TD>
+          <TD width="95%"><FONT color=#cc0033><B><FONT face="細明體, 標楷體" 
+            size=3>淨水器的種類及設置時機</FONT></B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=25><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <DIV align=right><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3>作者：成功大學環境工程研究所 　林財富教授</FONT></DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%"><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　目前市<FONT color=#ff3333>面上販售的淨水器</FONT>絕大多數是以自來水為原水，<FONT 
+            color=#ff3333>主要包括逆滲透(RO)淨水器、活性碳淨水器、軟水器、蒸餾水製造機等。</FONT>本文僅說明對污染物具去除效果之設備，至於僅具殺菌效果的設備，例如開飲機，則不在本文討論範圍中。各種淨水器的處理方法不同，目標污染物也有差異，購買成本及操作、維護所需花費的時間、精力也不一，以下分別介紹。使用前必須注意，對於非自來水或可能受微生物污染的水，除非經過嚴密的測試與維護，下列淨水器均不建議使用。</FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%"><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3><B>（一）軟水器</B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　水中若存有過高的硬度(主要是鈣與鎂離子)，則煮開水會產生白色碳酸鹽沈澱物(即俗稱的茶垢)，軟水器通常使用離子交換樹脂，利用樹脂中之陽離子(通常是鈉離子)交換水中之鈣與鎂等，達到軟化硬水的目的。由於陽離子交換樹脂對電荷越多，分子量愈大的離子有越大的吸引力，因此<FONT 
+            color=#ff3333>軟水器對水中離子態的重金屬也有去除效果。</FONT></FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　離子交換樹脂中的交換容量有限，因此接近飽和時，必須進行再生以確保交換的能力。此外，<FONT 
+            color=#ff3333>使用鈉離子交換樹脂式的軟水器會使水中鈉離子濃度增加，可能會影響人體循環系統。</FONT>由於<FONT 
+            color=#ff3333>離子交換樹脂軟水器主要是以去除水中硬度為主，</FONT>因此對於水中硬度比較高，常出現茶垢的地區，<FONT 
+            color=#ff3333>例如南部地區，比較適用。</FONT> </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%"><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3><B>（二）活性碳濾水器</B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　活性碳具有多孔性的結構，表面積很多，每一公克的活性碳大約有好幾個籃球場大的面積，因此可提供許多污染物停留在表面上(稱之為吸附)。當自來水通過活性碳濾水器時，水中有機物如農藥、三鹵甲烷、臭味分子等，均會被活性碳吸附而達到淨水的功能。由於活性碳的表面積大，因此自來水水中造成氯味的物質也會與碳表面反應而達到降低氯味。此外，活性碳對於少部分重金屬亦有部分的去除效果。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　活性碳濾水器並非萬能，例如對水中陰離子型態的污染物，如硝酸鹽則無顯著去除效果，對重金屬的去除也有限，且細菌可附著於活性碳顆粒表面，生長成生物膜，反而造成濾心中細菌數增加的情形。此外，對於水中硬度的去除，活性碳則無明顯效果。<FONT 
+            color=#ff3333>活性碳濾水器最佳使用時機是在氯味重及三鹵甲烷、農藥及臭味等有機物含量高的地區。</FONT> 
+            </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%"><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3><B>（三）蒸餾水製造機</B></FONT><FONT face="細明體, 標楷體" color=#003399 
+            size=3> </FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　蒸餾水製造機（如圖1）主要是利用加熱煮沸的方法，將水蒸發後再凝結，以達到去除水中雜質的目的。因此，一般水中沸點比水高的污染物，例如重金屬、農藥及陰、陽離子(如造成硬度的金屬離子)及溶解性固體等皆會留在蒸餾水製造機內部，不會隨蒸餾水進到收集桶中。且在煮沸的過程中，<FONT 
+            color=#ff3333>多數細菌也會被殺死。</FONT></FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　蒸餾水產生器雖然對於大多數的水中污染物可有效去除，但對於部分沸點比水低的揮發性有機物，例如三鹵甲烷等，可能會隨著蒸餾水進到收集桶中。此外，使用煮沸、冷凝的原理，其<FONT 
+            color=#ff3333>電力消耗往往比較高，</FONT>且一般家庭用機型之蒸餾水製造機製造水的速率大約為每天12公升(約為每8小時4公升)，與其他淨水器相較而言，<FONT 
+            color=#ff3333>產水速率算是比較慢的。</FONT> </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=20><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%"><FONT face="細明體, 標楷體" color=#0000ff 
+            size=3><B>（四）逆滲透(RO)淨水器</B></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　在本文所討論的各種淨水器中，以逆滲透淨水器操作最為複雜，所需技術也最高。家庭用逆滲透淨水器（如圖2）一般包括了2、3個前置過濾器(第一段為百萬分之五公尺(5微米=5mm)的濾心，第二段為活性碳濾心，部分機型有第三段1微米的濾心)及逆滲透膜，部分機型在清水儲水桶出到水龍頭前並加裝後置後性碳濾心。第一段濾心主要用於去除水中泥、砂等雜質顆粒，前置活性濾心則用於去除水中有機物、臭味分子及氯等，逆滲透膜則可去除大多數水中溶解性的雜質，後置活性碳則進一步除去逆滲透膜殘留的污染物。逆滲透淨水器的主要作用單元是逆滲透膜，利用半透膜的原理，施加壓力使原水流過半透膜通到清水端，而將雜質留在膜的另一邊，隨廢液流掉。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　由於滲透膜多數為有機合成材質，因此為了保護滲透膜的壽命，在滲透膜前端必須有去除水中餘氯的單元，通常利用活性碳濾心完成。此外，為避免水中懸浮微粒造成阻塞問題，通常在活性碳濾心前會再加一個5微米(百萬分之五公尺)的濾心。除掉水中較大的顆粒、餘氯及部分有機物可由前置活性碳及顆粒濾心去除外，其餘如重金屬、農藥、細菌、病毒等對人體有害的物質，及硬度、臭味等相關會影響口感的化學物質均可被逆滲透膜去除。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 size=3>　　<FONT 
+            color=#ff3333>滲透處理法雖然可以算是對各類淨水器中對水中污染物最全面的的處理方法，</FONT>但由儲水桶至出水水龍頭端為最常受微生物污染的位置，因此有廠商加裝了紫外線殺菌燈，以避免病原微生物污染。逆滲透法維護也最複雜，每一段濾心更損的時間不一，<FONT 
+            color=#ff3333>系統造價也最為昂貴，且尚須消耗電力費用，</FONT>此外<FONT 
+            color=#ff3333>每生產1公升的水需排放2公升的廢水，</FONT>對水質源而言是比較浪費的。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　事實上，許多淨水器是由前述幾個單元組合而成，例如前述逆滲透淨水系統至少都包括前置濾心及活性碳濾心，而部份蒸餾水製造機亦有使用活性碳作為後置濾心，市面上亦有出售活性碳及離子交換樹脂混合的淨水器，而一般活性碳淨水器或軟水器前也多加裝前置濾心，選擇濾水器可能較前面所介紹的更複雜。</FONT></P>
+            <P><FONT face="細明體, 標楷體" color=#003399 
+            size=3>　　前述四種淨水器及兩種輔助單元的主要功能、操作及維護等各種成本列如表中，<FONT 
+            color=#ff3333>對淨水器有需要的民眾，可參考表中各種淨水器主要可去除之污染物，再與當地自來水質比較，並考量本身擁有之預算，及維護的難易程度，可選擇最適己的淨水器，</FONT>使全家可享受到安全且品質良好的水。 
+            </FONT></P></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><FONT face="細明體, 標楷體" color=#003399 size=3></FONT></TD>
+          <TD width="95%">
+            <DIV align=right><FONT face="細明體, 標楷體" color=#003399 size=3><A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#05"><IMG 
+            height=36 alt=圖 src="top.gif" 
+            width=74 border=0></A></FONT> 
+            <HR>
+            </DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3><A name=04></A></FONT></TD>
+          <TD width="95%" height=18><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%"><B><FONT face="細明體, 標楷體" color=#cc0033 
+            size=3>四、</FONT></B></TD>
+          <TD vAlign=center width="95%"><B><FONT face="細明體, 標楷體" color=#cc0033 
+            size=3>各種淨水器可去除之污染物及其購置、維護條件</FONT></B></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=22><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=22><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD></TR>
+        <TR vAlign=top align=left>
+          <TD width="5%" height=243><FONT face="細明體, 標楷體" color=#003399 
+            size=3></FONT></TD>
+          <TD width="95%" height=243>
+            <TABLE borderColor=#999999 cellSpacing=0 cellPadding=0 width="100%" 
+            border=1>
+              <TBODY>
+              <TR vAlign=center align=middle bgColor=#99ccff>
+                <TD rowSpan=2><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3>淨水器種類</FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT></TD>
+                <TD colSpan=7 height=25><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3>可去除之污染物</FONT></TD>
+                <TD width="6%" rowSpan=2><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3>購置成本</FONT></TD>
+                <TD width="6%" rowSpan=2><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3>維護難易</FONT></TD>
+                <TD width="10%" rowSpan=2><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3></FONT><FONT face="細明體, 標楷體" color=#0000cc 
+                  size=3>水回收率</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="8%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>三鹵<BR>甲烷</FONT></TD>
+                <TD width="7%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>農藥</FONT></TD>
+                <TD width="7%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>氯味</FONT></TD>
+                <TD width="7%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>臭味</FONT></TD>
+                <TD width="8%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>硬度</FONT></TD>
+                <TD width="8%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>重金屬</FONT></TD>
+                <TD width="8%" bgColor=#ccccff height=40><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>細菌/病毒</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="14%" bgColor=#99cccc height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>軟水器</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>低</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>中</FONT></TD>
+                <TD width="10%" bgColor=#ffcc99 height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>~100</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="14%" bgColor=#99cccc height=45><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>活性碳<BR>濾水器</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>△</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>△</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>低</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>中</FONT></TD>
+                <TD width="10%" bgColor=#ffcc99 height=45><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>~100</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="14%" bgColor=#99cccc height=45><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>蒸餾水<BR>製造機</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>△</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>△</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>中</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=45><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>易</FONT></TD>
+                <TD width="10%" bgColor=#ffcc99 height=45><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>~100</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="14%" bgColor=#99cccc height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>逆滲透系統</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>高</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>難</FONT></TD>
+                <TD width="10%" bgColor=#ffcc99 height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>~30</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="14%" bgColor=#99cccc height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>過濾器*</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>低</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>易</FONT></TD>
+                <TD width="10%" bgColor=#ffcc99 height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>~100</FONT></TD></TR>
+              <TR vAlign=center align=middle>
+                <TD width="14%" bgColor=#99cccc height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc size=3>紫外光殺菌*</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="7%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>×</FONT></TD>
+                <TD width="8%" bgColor=#ffcccc height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>○</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>中</FONT></TD>
+                <TD width="6%" bgColor=#ffcc99 height=30><FONT face="細明體, 標楷體" 
+                  color=#0000cc size=3>中</FONT></TD>
+                <TD width="10%" bgColor=#ffcc99 height=30><FONT 
+                  face="細明體, 標楷體" color=#0000cc 
+            size=3>~100</FONT></TD></TR></TBODY></TABLE>
+            <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD width="6%" height=22>　</TD>
+                <TD width="94%" height=22>　</TD></TR>
+              <TR vAlign=top align=left>
+                <TD width="6%"><FONT face="細明體, 標楷體" color=#cc0033 
+                  size=3>註：</FONT></TD>
+                <TD width="94%"><FONT face="細明體, 標楷體" color=#cc0033 
+                  size=3>○表示去除效果良好，△表示部分去除，×表示無法去除，*主要用於輔助設備。<BR>購置成本：高= &gt; 
+                  4000 元，中= 1000 - 4000 元，低= &lt; 1000 元。 
+            </FONT></TD></TR></TBODY></TABLE>
+            <DIV align=right><FONT face="細明體, 標楷體" color=#003399 size=3><A 
+            href="http://www.klepb.gov.tw/business-ep-work-4-drink-data03.htm#05"><IMG 
+            height=36 alt=圖 src="top.gif" 
+            width=74 border=0></A></FONT></DIV></TD></TR>
+        <TR vAlign=top align=left>
+          <TD height=10>&nbsp;</TD>
+          <TD height=10>
+            <DIV align=right></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<DIV align=center></DIV></BODY></HTML>
