@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>表格</title>
+</head>
+<body>
+<!-- 建立一個陽春表格 -->
+<table border="1">
+  <caption>人均GDPooo增長</caption>
+  <tr>
+    <th>&nbsp;</th>
+	<th>第一季度</th>
+	<th>第二季度</th>
+    <th>第三季度</th>
+    <th>第四季度</th>
+  </tr>
+  <tr>
+    <td>2021年</td>
+    <td>20.4</td>
+    <td>27.4</td>
+    <td>90</td>
+    <td>20.4</td>
+  </tr>
+  <tr>
+    <th>2022年</th>
+    <td>16.4</td>
+    <td>18.4</td>
+    <td>32</td>
+    <td>19</td>
+  </tr>
+</table>
+<!-- 水平方向的儲存格合併 -->
+<table border="1">
+    <caption>表一: 人事資料</caption>
+    <tr>
+      <th>姓名</th>
+      <th>年齡</th>
+      <th>電話</th>
+    </tr>
+    <tr>
+      <td>李大華</td>
+      <td>25</td>
+      <td>12345678</td>
+    </tr>
+    <tr>
+      <td colspan="2">陳小明</td>
+      <td>21</td>
+    </tr> 
+    <tr>
+      <td colspan="3">劉大豐</td>
+    </tr>
+</table>
+ 
+<!-- 垂直方向的儲存格合併 -->
+<table border="1">
+<caption>存款方式一覽表</caption>
+<thead>
+  <tr>
+    <th></th>
+    <th>一般</th>
+    <th colspan="3">儲蓄</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th>活期</th>
+    <td>一般活期:<br>利息最低</td>
+    <td colspan="3">活期儲蓄:<br>利息較高，自然人應該優先選用</td>
+  </tr>
+  <tr>
+    <th rowspan="3">定期</th>
+    <td rowspan="3">一般定期:<br>利息較彽，<br>適合一年內短天期定存</td>
+    <td rowspan="3">定期儲蓄:<br>利息較高，<br>適合一年以上長天期定存</td>
+    <td>整存整付</td>
+    <td>本金一次存入，利息按月複利計算，到期一次領回本息。</td>
+  </tr>
+  <tr>
+    <td>零存整付</td>
+    <td>按月存入一定金額，<strong>機動利率</strong>按月複利計算，到期一次領回本息。</td>
+  </tr>
+  <tr>
+    <td>存款取息</td>
+    <td>本金一次存入，單利計息，每月領回存款利息，到期一次領回本金。</td>
+  </tr>
+</tbody>
+</table>
+ 
+<table border="1">
+	<caption>常見水果的盛產期</caption>
+	<tr><th>水果</th><th>開始期</th><th>結束期</th></tr>
+	<tr><td>桶柑</td><td>1月初</td><td>3月底</td></tr>
+	<tr><td rowspan="2">楊桃</td><td>1月初</td><td>3月底</td></tr>
+	<tr><td>5月初</td><td>12月中</td></tr>
+	<tr><td rowspan="3">釋迦</td><td>1月初</td><td>2月初</td></tr>
+	<tr><td>7月初</td><td>9月初</td></tr>
+	<tr><td>11月中</td><td>12月中</td></tr>
+	<tr><td>草莓</td><td>2月初</td><td>4月中</td></tr>
+	<tr><td>枇杷</td><td>2月底</td><td>5月初</td></tr>
+	<tr><td>鳳梨</td><td>3月底</td><td>7月初</td></tr>
+	<tr><td>香蕉</td><td>3月底</td><td>9月初</td></tr>
+	<tr><td>蓮霧</td><td>4月中</td><td>6月底</td></tr>
+	<tr><td>西瓜</td><td>4月中</td><td>7月中</td></tr>
+	<tr><td>芒果</td><td>4月中</td><td>7月底</td></tr>
+	<tr><td>荔枝</td><td>5月初</td><td>6月底</td></tr>
+	<tr><td>桃子</td><td>5月初</td><td>8月中</td></tr>
+	<tr><td>百香果</td><td>5月底</td><td>7月中</td></tr>
+	<tr><td>柿子</td><td>7月初</td><td>11月中</td></tr>
+	<tr><td>木瓜</td><td>8月初</td><td>11月中</td></tr>
+	<tr><td>柳橙</td><td>12月初</td><td>翌年3月</td></tr>
+</table>
+</body>
+</html>
