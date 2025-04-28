@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>樂透開獎機</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lottoNumbers">按下按鈕開始開獎！</div>
+    <button onclick="startLotto()">開始開獎</button>
+
+    <script>
+        function getRandomNumbers() {
+            let numbers = [];
+            while (numbers.length < 6) {
+                let num = Math.floor(Math.random() * 49) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers;
+        }
+
+        function startLotto() {
+            document.getElementById('lottoNumbers').innerHTML = "開獎中...";
+            let numbers = getRandomNumbers();
+            let display = document.getElementById('lottoNumbers');
+            display.innerHTML = ""; // 清空
+
+            let index = 0;
+            let interval = setInterval(function() {
+                if (index < numbers.length) {
+                    let ball = document.createElement('div');
+                    ball.className = 'ball';
+                    ball.textContent = numbers[index];
+                    display.appendChild(ball);
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 800); // 每800ms開出一顆球
+        }
+    </script>
+
+</body>
+</html>
